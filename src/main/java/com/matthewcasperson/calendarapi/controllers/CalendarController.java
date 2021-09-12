@@ -1,6 +1,9 @@
 package com.matthewcasperson.calendarapi.controllers;
 
 import com.matthewcasperson.calendarapi.components.OboAuthProvider;
+import com.microsoft.graph.models.User;
+import com.microsoft.graph.requests.GraphServiceClient;
+import okhttp3.Request;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,8 +18,14 @@ public class CalendarController {
     }
 
     @GetMapping("/calendar")
-    public String calendar() throws ExecutionException, InterruptedException {
-        return oboAuthProvider.getAuthorizationTokenAsync(null).get();
+    public String calendar() {
+        GraphServiceClient<Request> graphClient = GraphServiceClient
+                .builder()
+                .authenticationProvider(oboAuthProvider)
+                .buildClient();
+
+        User user = graphClient.me().buildRequest().get();
+        return user.id;
     }
 
 
