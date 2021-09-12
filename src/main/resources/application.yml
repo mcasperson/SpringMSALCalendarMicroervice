@@ -1,0 +1,7 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://mysampleazureaorganization.b2clogin.com/6051fe7b-951c-49c6-8d7f-7fb4dd497f83/v2.0/
+          jwk-set-uri: https://mysampleazureaorganization.b2clogin.com/6051fe7b-951c-49c6-8d7f-7fb4dd497f83/v2.0/.well-known/jwks.json
