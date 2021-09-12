@@ -16,27 +16,20 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.concurrent.CompletableFuture;
 
 @Component
-class OboAuthProvider extends BaseAuthenticationProvider {
+public class OboAuthProvider extends BaseAuthenticationProvider {
 
-    //@Value("${security.oauth2.client.authority}")
-    private String authority;
-
-    //@Value("${security.oauth2.client.client-id}")
+    @Value("${azuread.client-id}")
     private String clientId;
 
-    //@Value("${security.oauth2.client.client-secret}")
+    @Value("${azuread.client-secret}")
     private String secret;
 
-    //@Value("${aad.graphDefaultScope}")
+    @Value("${azuread.graph-default-scope}")
     private String scope;
-
-    //@Autowired
-    CacheManager cacheManager;
 
     @Override
     public CompletableFuture<String> getAuthorizationTokenAsync(URL url) {
@@ -44,20 +37,13 @@ class OboAuthProvider extends BaseAuthenticationProvider {
         // Gets incoming access token and generates cache key. The cache key will be used to store
         // the tokens for the incoming request.
         String authToken = this.getAccessTokenFromRequest();
-        String cacheKey = Hashing.sha256().hashString(authToken, StandardCharsets.UTF_8).toString();
 
         IAuthenticationResult authResult;
         ConfidentialClientApplication application;
         try {
             application = ConfidentialClientApplication
                     .builder(clientId, ClientCredentialFactory.createFromSecret(secret))
-                    .authority(authority)
                     .build();
-
-            String cachedTokens = cacheManager.getCache("tokens").get(cacheKey, String.class);
-            if (cachedTokens != null) {
-                application.tokenCache().deserialize(cachedTokens);
-            }
 
             OnBehalfOfParameters parameters =
                     OnBehalfOfParameters.builder(Collections.singleton(scope),
@@ -70,7 +56,6 @@ class OboAuthProvider extends BaseAuthenticationProvider {
                     ex.getCause());
         }
 
-        cacheManager.getCache("tokens").put(cacheKey, application.tokenCache().serialize());
         return CompletableFuture.completedFuture(authResult.accessToken());
     }
 

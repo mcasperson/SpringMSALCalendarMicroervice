@@ -5,5 +5,10 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://mysampleazureaorganization.b2clogin.com/6051fe7b-951c-49c6-8d7f-7fb4dd497f83/v2.0/
-          jwk-set-uri: https://mysampleazureaorganization.b2clogin.com/mysampleazureaorganization.onmicrosoft.com/discovery/v2.0/keys?p=B2C_1_signuporsignin
+          issuer-uri: https://${TENANT_NAME}.b2clogin.com/6051fe7b-951c-49c6-8d7f-7fb4dd497f83/v2.0/
+          jwk-set-uri: https://${TENANT_NAME}.b2clogin.com/${TENANT_NAME}.onmicrosoft.com/discovery/v2.0/keys?p=${FLOW_NAME}
+azuread:
+  client-id: ${CLIENT_ID}
+  client-secret: ${CLIENT_SECRET}
+  graph-default-scope: https://graph.microsoft.com/.default
+
