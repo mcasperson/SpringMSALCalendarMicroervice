@@ -26,6 +26,7 @@ public class CalendarController {
 
     // https://github.com/Azure-Samples/azure-spring-boot-samples/blob/20910da2b61753d33b3c868e719a940e21117578/aad/azure-spring-boot-starter-active-directory/aad-resource-server-obo/src/main/java/com/azure/spring/sample/aad/controller/SampleController.java
     private String callMicrosoftGraphMeEndpoint(OAuth2AuthorizedClient graph) {
+        System.out.println(graph.getAccessToken().getTokenValue());
         if (null != graph) {
             String body = webClient
                     .get()
