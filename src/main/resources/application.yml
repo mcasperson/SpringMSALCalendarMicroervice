@@ -10,6 +10,7 @@ azure:
       graph:
         scopes:
           - https://graph.microsoft.com/User.Read
+          - https://graph.microsoft.com/Calendars.Read
 logging:
   level:
     org:
