@@ -8,12 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CalendarController {
-
-
     @GetMapping("/calendar")
     public String calendar(@RegisteredOAuth2AuthorizedClient("graph") OAuth2AuthorizedClient graph) {
         return graph == null ? "null" : "not null";
     }
-
-
 }

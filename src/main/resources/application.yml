@@ -10,13 +10,6 @@ azure:
       graph:
         scopes:
           - https://graph.microsoft.com/User.Read
-spring:
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: https://sts.windows.net/${TENANT_ID}/
-          jwk-set-uri: https://login.microsoftonline.com/common/discovery/keys
 logging:
   level:
     org:
