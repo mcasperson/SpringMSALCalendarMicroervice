@@ -1,14 +1,12 @@
 server:
   port: 8081
-spring:
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: https://${TENANT_NAME}.b2clogin.com/6051fe7b-951c-49c6-8d7f-7fb4dd497f83/v2.0/
-          jwk-set-uri: https://${TENANT_NAME}.b2clogin.com/${TENANT_NAME}.onmicrosoft.com/discovery/v2.0/keys?p=${FLOW_NAME}
-azuread:
-  client-id: ${CLIENT_ID}
-  client-secret: ${CLIENT_SECRET}
-  graph-default-scope: https://graph.microsoft.com/.default
-
+azure:
+  activedirectory:
+    client-id: ${CLIENT_ID}
+    client-secret: ${CLIENT_SECRET}
+    app-id-uri: api://5907efc0-f0b5-45db-b4cf-725f655009c3
+    tenant-id: ${TENANT_ID}
+    authorization-clients:
+      graph:
+        scopes:
+          - https://graph.microsoft.com/User.Read
