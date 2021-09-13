@@ -17,3 +17,8 @@ spring:
         jwt:
           issuer-uri: https://sts.windows.net/${TENANT_ID}/
           jwk-set-uri: https://login.microsoftonline.com/common/discovery/keys
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
