@@ -4,7 +4,7 @@ azure:
   activedirectory:
     client-id: ${CLIENT_ID}
     client-secret: ${CLIENT_SECRET}
-    app-id-uri: api://b4a92625-b0ea-4a45-bc6f-772d904ae8da
+    app-id-uri: ${API_URL}}
     tenant-id: ${TENANT_ID}
     authorization-clients:
       graph:
