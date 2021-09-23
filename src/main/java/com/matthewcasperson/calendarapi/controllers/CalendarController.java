@@ -14,7 +14,7 @@ import static org.springframework.security.oauth2.client.web.reactive.function.c
 public class CalendarController {
 
     private static final String GRAPH_ME_ENDPOINT = "https://graph.microsoft.com/v1.0/me";
-    private static final String GRAPH_CALENDAR_ENDPOINT = "https://graph.microsoft.com/v1.0/me/calendar";
+    private static final String GRAPH_CALENDAR_ENDPOINT = "https://graph.microsoft.com/v1.0/me/calendar/events";
 
     @Autowired
     private WebClient webClient;
@@ -26,7 +26,7 @@ public class CalendarController {
 
     private String callMicrosoftGraphMeEndpoint(OAuth2AuthorizedClient graph) {
         if (null != graph) {
-            System.out.println(graph.getAccessToken().getTokenValue());
+            System.out.println("\n" + graph.getAccessToken().getTokenValue() + "\n");
 
             String body = webClient
                     .get()
