@@ -13,7 +13,6 @@ import static org.springframework.security.oauth2.client.web.reactive.function.c
 @RestController
 public class CalendarController {
 
-    private static final String GRAPH_ME_ENDPOINT = "https://graph.microsoft.com/v1.0/me";
     private static final String GRAPH_CALENDAR_ENDPOINT = "https://graph.microsoft.com/v1.0/me/calendar/events";
 
     @Autowired
@@ -37,7 +36,7 @@ public class CalendarController {
                     .block();
             return body;
         } else {
-            return "Graph response failed.";
+            return "Graph request failed.";
         }
     }
 }
