@@ -18,8 +18,8 @@ public class CalendarController {
     @Autowired
     private WebClient webClient;
 
-    @GetMapping("/calendar")
-    public String calendar(@RegisteredOAuth2AuthorizedClient("graph") OAuth2AuthorizedClient graph) {
+    @GetMapping("/events")
+    public String events(@RegisteredOAuth2AuthorizedClient("graph") OAuth2AuthorizedClient graph) {
         return callMicrosoftGraphMeEndpoint(graph);
     }
 
