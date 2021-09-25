@@ -1,3 +1,5 @@
+// src/main/java/com/matthewcasperson/calendarapi/exceptions/AuthException.java
+
 package com.matthewcasperson.calendarapi.exceptions;
 
 public class AuthException extends RuntimeException {
