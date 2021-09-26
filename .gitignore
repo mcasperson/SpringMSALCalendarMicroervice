@@ -33,3 +33,4 @@ build/
 .vscode/
 
 run.ps1
+run.sh
