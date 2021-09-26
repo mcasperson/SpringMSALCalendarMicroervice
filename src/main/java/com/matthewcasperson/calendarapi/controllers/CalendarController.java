@@ -22,10 +22,10 @@ public class CalendarController {
 
     @GetMapping(value = "/events", produces = "application/json")
     public String events(@RegisteredOAuth2AuthorizedClient("graph") OAuth2AuthorizedClient graph) {
-        return callMicrosoftGraphMeEndpoint(graph);
+        return callMicrosoftGraphEndpoint(graph);
     }
 
-    private String callMicrosoftGraphMeEndpoint(OAuth2AuthorizedClient graph) {
+    private String callMicrosoftGraphEndpoint(OAuth2AuthorizedClient graph) {
         if (null != graph) {
             System.out.println("\n" + graph.getAccessToken().getTokenValue() + "\n");
 
